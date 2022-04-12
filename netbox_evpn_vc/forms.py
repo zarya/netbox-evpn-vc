@@ -5,7 +5,7 @@ from .models import EvpnVC, EvpnVCVlan
 class EvpnVCForm(NetBoxModelForm):
     comments = CommentField()
     tenant = DynamicModelChoiceField(
-        queryset=AccessList.objects.all()
+        queryset=EvpnVC.objects.all()
     )
 
     class Meta:
@@ -14,9 +14,9 @@ class EvpnVCForm(NetBoxModelForm):
 
 class EvpnVCVlanForm(NetBoxModelForm):
     vlan = DynamicModelChoiceField(
-        queryset=AccessList.objects.all()
+        queryset=EvpnVC.objects.all()
     )
 
     class Meta:
-        model = EvpnVC 
+        model = EvpnVCVlan
         fields = ('evpn_vc', 'vlan',)

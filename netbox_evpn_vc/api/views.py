@@ -14,7 +14,7 @@ class EvpnVCViewSet(NetBoxModelViewSet):
 
 
 class EvpnVCVlanViewSet(NetBoxModelViewSet):
-    queryset = models.AccessListRule.objects.prefetch_related(
+    queryset = models.EvpnVCVlan.objects.prefetch_related(
         'vlan', 'tags'
     )
     serializer_class = EvpnVCVlanSerializer

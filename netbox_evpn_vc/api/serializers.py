@@ -9,7 +9,7 @@ class NestedEvpnVCSerializer(WritableNestedSerializer):
     )
 
     class Meta:
-        model = AccessList
+        model = EvpnVC 
         fields = ('id', 'url', 'display', 'name')
 
 
@@ -19,7 +19,7 @@ class NestedEvpnVCVlanSerializer(WritableNestedSerializer):
     )
 
     class Meta:
-        model = AccessListRule
+        model = EvpnVCVlan 
         fields = ('id', 'url', 'display', 'index')
 
 class EvpnVCSerializer(NetBoxModelSerializer):
