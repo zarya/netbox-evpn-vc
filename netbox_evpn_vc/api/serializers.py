@@ -20,7 +20,7 @@ class NestedEvpnVCVlanSerializer(WritableNestedSerializer):
 
     class Meta:
         model = EvpnVCVlan 
-        fields = ('id', 'url', 'display')
+        fields = ('id', 'url', 'display', 'evpn_vc')
 
 class EvpnVCSerializer(NetBoxModelSerializer):
     url = serializers.HyperlinkedIdentityField(
@@ -30,7 +30,7 @@ class EvpnVCSerializer(NetBoxModelSerializer):
     class Meta:
         model = EvpnVC
         fields = (
-            'id', 'display', 'name', 'default_action', 'comments', 'vlan_count', 'tags', 'custom_fields', 'created',
+            'id', 'url', 'display', 'name', 'default_action', 'comments', 'vlan_count', 'tags', 'custom_fields', 'created',
             'last_updated',
         )
 
@@ -43,7 +43,7 @@ class EvpnVCVlanSerializer(NetBoxModelSerializer):
     class Meta:
         model = EvpnVCVlan
         fields = (
-            'id', 'evpn_vc', 'vlan', 
+            'id', 'url', 'display' 'evpn_vc', 'vlan', 
             'tags', 'custom_fields', 'created',
             'last_updated',
         )
