@@ -1,11 +1,13 @@
 from netbox.forms import NetBoxModelForm
 from utilities.forms.fields import CommentField, DynamicModelChoiceField
+from tenancy.models import Tenant
 from .models import EvpnVC, EvpnVCVlan
 
 class EvpnVCForm(NetBoxModelForm):
     comments = CommentField()
     tenant = DynamicModelChoiceField(
-        queryset=EvpnVC.objects.all()
+        queryset=Tenant.objects.all(),
+        required=False
     )
 
     class Meta:
