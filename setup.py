@@ -10,7 +10,7 @@ setup(
     zip_safe=False,
     package_data={
         '': ['*.html']
-    }
+    },
     exclude_package_data={
         '': ["README.txt"]
     },
