@@ -18,15 +18,12 @@ class EvpnVCVlanTable(NetBoxTable):
     evpn_vc = tables.Column(
         linkify=True
     )
-    index = tables.Column(
-        linkify=True
-    )
 
     class Meta(NetBoxTable.Meta):
         model = EvpnVCVlan
         fields = (
-            'pk','index', 'evpn_vc', 'vlan',
+            'pk', 'evpn_vc', 'vlan',
         )
         default_columns = (
-            'pk','index', 'evpn_vc', 'vlan',
+            'pk', 'evpn_vc', 'vlan',
         )
