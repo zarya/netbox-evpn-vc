@@ -43,7 +43,7 @@ class EvpnVCVlanSerializer(NetBoxModelSerializer):
     class Meta:
         model = EvpnVCVlan
         fields = (
-            'id', 'url', 'display' 'evpn_vc', 'vlan', 
+            'id', 'url', 'display', 'evpn_vc', 'vlan', 
             'tags', 'custom_fields', 'created',
             'last_updated',
         )
