@@ -8,4 +8,10 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
+    package_data={
+        '': ['*.html']
+    }
+    exclude_package_data={
+        '': ["README.txt"]
+    },
 )
