@@ -4,6 +4,14 @@ from . import forms, models, tables
 
 class EvpnVCView(generic.ObjectView):
     queryset = models.EvpnVC.objects.all()
+        
+    def get_extra_context(self, request, instance):
+        table = tables.EvpnVCVlanTable(instance.rules.all())
+        table.configure(request)
+
+        return {
+            'vlans_table': table,
+        }
 
 class EvpnVCListView(generic.ObjectListView):
     queryset = models.EvpnVC.objects.all()
