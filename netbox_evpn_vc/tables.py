@@ -25,5 +25,5 @@ class EvpnVCVlanTable(NetBoxTable):
             'pk', 'evpn_vc', 'vlan',
         )
         default_columns = (
-            'pk', 'evpn_vc', 'vlan',
+            'pk', 'vlan',
         )
