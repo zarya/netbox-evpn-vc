@@ -17,7 +17,7 @@ urlpatterns = (
     path('evpn-vc-vlan/<int:pk>/', views.EvpnVCVlanView.as_view(), name='evpnvcvlan'),
     path('evpn-vc-vlan/<int:pk>/edit/', views.EvpnVCVlanEditView.as_view(), name='evpnvcvlan_edit'),
     path('evpn-vc-vlan/<int:pk>/delete/', views.EvpnVCVlanDeleteView.as_view(), name='evpnvcvlan_delete'),
-    path('evpn-vc-vlan/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='evpnvc_changelog', kwargs={
+    path('evpn-vc-vlan/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='evpnvcvlan_changelog', kwargs={
         'model': models.EvpnVCVlan
     }),
 
