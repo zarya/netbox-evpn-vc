@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ipam.api.serializers import NestedPrefixSerializer
+from ipam.api.serializers import NestedVlanSerializer
 from netbox.api.serializers import NetBoxModelSerializer, WritableNestedSerializer
 from ..models import EvpnVC, EvpnVCVlan 
 
@@ -38,7 +38,7 @@ class EvpnVCVlanSerializer(NetBoxModelSerializer):
     url = serializers.HyperlinkedIdentityField(
         view_name='plugins-api:netbox_evpn_vc-api:evpnvcvlan-detail'
     )
-    vlan = NestedPrefixSerializer()
+    vlan = NestedVlanSerializer()
 
     class Meta:
         model = EvpnVCVlan
