@@ -15,6 +15,9 @@ class EvpnVCTable(NetBoxTable):
         default_columns = ('vni','name', 'tenant', 'vlan_count')
 
 class EvpnVCVlanTable(NetBoxTable):
+    vlan = tables.Column(
+        linkify=True
+    )
     evpn_vc = tables.Column(
         linkify=True
     )

@@ -31,7 +31,7 @@ class EvpnVC(NetBoxModel):
         verbose_name_plural= 'EVPN Virtual Circuits'
 
     def __str__(self):
-        return f'{self.vni} ({self.name})'
+        return f'{self.name} ({self.vni})'
 
     def get_absolute_url(self):
         return reverse('plugins:netbox_evpn_vc:evpnvc', args=[self.pk])
@@ -45,7 +45,7 @@ class EvpnVCVlan(NetBoxModel):
     vlan = models.OneToOneField(
         to='ipam.Vlan',
         on_delete=models.PROTECT,
-        related_name='+',
+        related_name='evpnvcvlan',
         blank=True,
         null=True
     )
