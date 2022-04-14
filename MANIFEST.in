@@ -1,1 +1,2 @@
 recursive-include netbox_evpn_vc/templates *.html
+recursive-include netbox_evpn_vc/migrations *.py

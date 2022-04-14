@@ -29,6 +29,12 @@ class EvpnVC(NetBoxModel):
         ordering = ('vni',)
         verbose_name = 'EVPN Virtual Circuit'
         verbose_name_plural= 'EVPN Virtual Circuits'
+        constraints = (
+            models.UniqueConstraint(
+                fields=('vni',),
+                name='evpn_vc_vni'
+            ),
+        )
 
     def __str__(self):
         return f'{self.name} ({self.vni})'

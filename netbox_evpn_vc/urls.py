@@ -5,6 +5,7 @@ from . import models, views
 urlpatterns = (
     path('evpn-vcs/', views.EvpnVCListView.as_view(), name='evpnvc_list'),
     path('evpn-vcs/add/', views.EvpnVCEditView.as_view(), name='evpnvc_add'),
+    path('evpn-vcs/delete/', views.EvpnVCBulkDeleteView.as_view(), name='evpnvc_bulk_delete'),
     path('evpn-vcs/<int:pk>/', views.EvpnVCView.as_view(), name='evpnvc'),
     path('evpn-vcs/<int:pk>/edit/', views.EvpnVCEditView.as_view(), name='evpnvc_edit'),
     path('evpn-vcs/<int:pk>/delete/', views.EvpnVCDeleteView.as_view(), name='evpnvc_delete'),
