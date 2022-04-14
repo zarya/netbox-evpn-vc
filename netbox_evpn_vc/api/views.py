@@ -7,7 +7,7 @@ from .serializers import EvpnVCSerializer, EvpnVCVlanSerializer
 
 
 class EvpnVCViewSet(NetBoxModelViewSet):
-    queryset = models.EvpnVC.objects.prefetch_related('tags').annotate(
+    queryset = models.EvpnVC.objects.prefetch_related('tags', 'vlans').annotate(
         vlan_count=Count('vlans')
     )
     serializer_class = EvpnVCSerializer
@@ -15,7 +15,7 @@ class EvpnVCViewSet(NetBoxModelViewSet):
 
 class EvpnVCVlanViewSet(NetBoxModelViewSet):
     queryset = models.EvpnVCVlan.objects.prefetch_related(
-        'vlan', 'tags'
+        'vlan', 'tags', 'evpn_vc'
     )
     serializer_class = EvpnVCVlanSerializer
     filterset_class = filtersets.EvpnVCVlanFilterSet

@@ -6,7 +6,7 @@ from extras.plugins import PluginTemplateExtension
 
 class EvpnVCVLANStatus(PluginTemplateExtension):
     model = "ipam.vlan"
-    def left_page(self):
+    def right_page(self):
         vlan = self.context["object"]
         template_filename = "netbox_evpn_vc/vlan_evpn_vc.html"
 
