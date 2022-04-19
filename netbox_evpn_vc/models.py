@@ -20,6 +20,7 @@ class EvpnVC(NetBoxModel):
     )
     tenant = models.ForeignKey(
         to='tenancy.Tenant',
+        related_name="evpnvcs",
         on_delete=models.PROTECT,
         blank=True,
         null=True

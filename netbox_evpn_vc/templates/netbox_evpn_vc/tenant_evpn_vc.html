@@ -1,0 +1,11 @@
+{% load humanize %}
+{% load render_table from django_tables2 %}
+
+<div class="card card-default">
+    <div class="card-header">
+        <strong>EVPN Info</strong>
+    </div>
+    <div class="card-body table-responsive">
+          {% render_table evpnvcs %}
+    </div>
+</div>

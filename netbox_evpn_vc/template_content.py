@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
 from extras.plugins import PluginTemplateExtension
-
+from . import tables
 
 class EvpnVCVLANStatus(PluginTemplateExtension):
     model = "ipam.vlan"
@@ -17,4 +17,18 @@ class EvpnVCVLANStatus(PluginTemplateExtension):
         except ObjectDoesNotExist:
             return ""
 
-template_extensions = [EvpnVCVLANStatus]
+class TenantEvpnVCs(PluginTemplateExtension):
+    model = "tenancy.tenant"
+    def right_page(self):
+        tenant = self.context["object"]
+        vcs = tables.EvpnVCTable(list(tenant.evpnvcs.all()), orderable=False)
+        template_filename = "netbox_evpn_vc/tenant_evpn_vc.html"
+
+        try:
+            return self.render(
+                template_filename, extra_context={"evpnvcs": vcs}
+            )
+        except ObjectDoesNotExist:
+            return ""
+
+template_extensions = [EvpnVCVLANStatus, TenantEvpnVCs]

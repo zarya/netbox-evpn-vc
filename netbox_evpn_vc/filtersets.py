@@ -5,10 +5,10 @@ from .models import EvpnVC, EvpnVCVlan
 class EvpnVCFilterSet(NetBoxModelFilterSet):
     class Meta:
         model = EvpnVC
-        fields = ('id', 'name', 'vni')
+        fields = ('id', 'name', 'vni', 'tenant')
 
     def search(self, queryset, name, value):
-        return queryset.filter(description__icontains=value)
+        return queryset.filter(name__icontains=value)
 
 class EvpnVCVlanFilterSet(NetBoxModelFilterSet):
 
