@@ -4,7 +4,7 @@ from . import forms, models, tables, filtersets
 
 class EvpnVCView(generic.ObjectView):
     queryset = models.EvpnVC.objects.all()
-        
+
     def get_extra_context(self, request, instance):
         table = tables.EvpnVCVlanTable(instance.vlans.all())
         table.configure(request)
@@ -14,8 +14,9 @@ class EvpnVCView(generic.ObjectView):
         }
 
 class EvpnVCListView(generic.ObjectListView):
-    queryset = models.EvpnVC.objects.all()
     table = tables.EvpnVCTable
+    filterset = filtersets.EvpnVCFilterSet
+    filterset_form = forms.EvpnVCFilterSetForm
     queryset = models.EvpnVC.objects.annotate(
         vlan_count=Count('vlans')
     )
