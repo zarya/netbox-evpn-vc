@@ -14,6 +14,17 @@ class EvpnVCTable(NetBoxTable):
         fields = ('pk', 'vni', 'name', 'comments', 'tenant', 'vlan_count')
         default_columns = ('vni','name', 'tenant', 'vlan_count')
 
+class EvpnVCTenantTable(NetBoxTable):
+    name = tables.Column(
+        linkify=True
+    )
+    vlan_count = tables.Column()
+
+    class Meta(NetBoxTable.Meta):
+        model = EvpnVC 
+        fields = ('pk', 'vni', 'name', 'comments', 'tenant', 'vlan_count')
+        default_columns = ('vni','name', 'vlan_count')
+
 class EvpnVCVlanTable(NetBoxTable):
     vlan = tables.Column(
         linkify=True

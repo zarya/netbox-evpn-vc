@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
+from django.db.models import Count
 from extras.plugins import PluginTemplateExtension
 from . import tables
 
@@ -21,7 +22,7 @@ class TenantEvpnVCs(PluginTemplateExtension):
     model = "tenancy.tenant"
     def right_page(self):
         tenant = self.context["object"]
-        vcs = tables.EvpnVCTable(list(tenant.evpnvcs.all()), orderable=False)
+        vcs = tables.EvpnVCTenantTable(list(tenant.evpnvcs.all().annotate(vlan_count=Count('vlans'))), orderable=False)
         template_filename = "netbox_evpn_vc/tenant_evpn_vc.html"
 
         try:
