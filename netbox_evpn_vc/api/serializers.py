@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from ipam.api.serializers import NestedVLANSerializer
+from tenancy.api.nested_serializers import NestedTenantSerializer
 from netbox.api.serializers import NetBoxModelSerializer, WritableNestedSerializer
 from ..models import EvpnVC, EvpnVCVlan 
 
@@ -7,10 +8,11 @@ class NestedEvpnVCSerializer(WritableNestedSerializer):
     url = serializers.HyperlinkedIdentityField(
         view_name='plugins-api:netbox_evpn_vc-api:evpnvc-detail'
     )
+    tenant = NestedTenantSerializer(read_only=True)
 
     class Meta:
         model = EvpnVC 
-        fields = ('id', 'url', 'display', 'name', 'vni')
+        fields = ('id', 'url', 'display', 'name', 'tenant', 'vni')
 
 
 class NestedEvpnVCVlanSerializer(WritableNestedSerializer):
@@ -30,10 +32,12 @@ class EvpnVCSerializer(NetBoxModelSerializer):
 
     vlan_count = serializers.IntegerField(read_only=True)
     vlans = NestedEvpnVCVlanSerializer(many=True, read_only=True) 
+    tenant = NestedTenantSerializer(read_only=True)
+
     class Meta:
         model = EvpnVC
         fields = (
-            'id', 'url', 'display', 'name', 'comments', 'vni', 'vlan_count', 'vlans', 'tags', 'custom_fields', 'created',
+            'id', 'url', 'display', 'name', 'tenant', 'comments', 'vni', 'vlan_count', 'vlans', 'tags', 'custom_fields', 'created',
             'last_updated',
         )
 
