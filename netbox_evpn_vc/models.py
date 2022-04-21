@@ -58,7 +58,7 @@ class EvpnVCVlan(NetBoxModel):
     )
 
     class Meta:
-        ordering = ['evpn_vc']
+        ordering = ['evpn_vc', 'vlan']
         verbose_name = "VNI to VLAN connection"
         verbose_name_plural = "VNI to VLAN connections"
 

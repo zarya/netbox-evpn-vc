@@ -42,6 +42,12 @@
         <div class="card-body table-responsive">
           {% render_table vlans_table %}
         </div>
+        <div class="card-footer text-end noprint">
+            <a href="{% url 'plugins:netbox_evpn_vc:evpnvcvlan_add' %}?evpn_vc={{ object.pk }}" class="btn btn-primary btn-sm">
+                <i class="mdi mdi-plus-thick" aria-hidden="true"></i>
+                Add a vlan
+            </a>
+        </div>
       </div>
     </div>
   </div>

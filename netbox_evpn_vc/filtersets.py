@@ -26,7 +26,12 @@ class EvpnVCVlanFilterSet(NetBoxModelFilterSet):
 
     class Meta:
         model = EvpnVCVlan 
-        fields = ('id', 'evpn_vc')
+        fields = ('id', 'evpn_vc', 'vlan')
 
     def search(self, queryset, name, value):
-        return queryset.filter(name__icontains=value)
+        qs_filter = (
+                  Q(id__icontains=value)
+                | Q(vlan__name__icontains=value)
+                | Q(evpn_vc__name__icontains=value)
+        )
+        return queryset.filter(qs_filter)

@@ -4,7 +4,10 @@ from netbox.tables import NetBoxTable, ChoiceFieldColumn
 from .models import EvpnVC, EvpnVCVlan 
 
 class EvpnVCTable(NetBoxTable):
-    name = tables.Column(
+    vni = tables.Column(
+        linkify=True
+    )
+    tenant = tables.Column(
         linkify=True
     )
     vlan_count = tables.Column()
@@ -15,7 +18,7 @@ class EvpnVCTable(NetBoxTable):
         default_columns = ('vni','name', 'tenant', 'vlan_count')
 
 class EvpnVCTenantTable(NetBoxTable):
-    name = tables.Column(
+    vni = tables.Column(
         linkify=True
     )
     vlan_count = tables.Column()
@@ -40,4 +43,21 @@ class EvpnVCVlanTable(NetBoxTable):
         )
         default_columns = (
             'pk', 'vlan',
+        )
+
+class EvpnVCVlanListTable(NetBoxTable):
+    evpn_vc = tables.Column(
+        linkify=True
+    )
+    vlan = tables.Column(
+        linkify=True
+    )
+
+    class Meta(NetBoxTable.Meta):
+        model = EvpnVCVlan
+        fields = (
+            'pk', 'evpn_vc', 'vlan',
+        )
+        default_columns = (
+            'pk', 'evpn_vc', 'vlan',
         )

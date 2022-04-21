@@ -25,6 +25,12 @@ class EvpnVCEditView(generic.ObjectEditView):
     queryset = models.EvpnVC.objects.all()
     form = forms.EvpnVCForm
 
+class EvpnVCBulkEditView(generic.BulkEditView):
+    queryset = models.EvpnVC.objects.all()
+    filterset = filtersets.EvpnVCFilterSet 
+    table = tables.EvpnVCTable
+    form = forms.EvpnVCBulkEditForm
+
 class EvpnVCDeleteView(generic.ObjectDeleteView):
     queryset = models.EvpnVC.objects.all()
 
@@ -37,8 +43,10 @@ class EvpnVCVlanView(generic.ObjectView):
     queryset = models.EvpnVCVlan.objects.all()
 
 class EvpnVCVlanListView(generic.ObjectListView):
+    table = tables.EvpnVCVlanListTable
+    filterset = filtersets.EvpnVCVlanFilterSet
+    filterset_form = forms.EvpnVCVlanFilterSetForm
     queryset = models.EvpnVCVlan.objects.all()
-    table = tables.EvpnVCVlanTable
 
 class EvpnVCVlanEditView(generic.ObjectEditView):
     queryset = models.EvpnVCVlan.objects.all()
@@ -46,3 +54,8 @@ class EvpnVCVlanEditView(generic.ObjectEditView):
 
 class EvpnVCVlanDeleteView(generic.ObjectDeleteView):
     queryset = models.EvpnVCVlan.objects.all()
+
+class EvpnVCVlanBulkDeleteView(generic.BulkDeleteView):
+    queryset = models.EvpnVCVlan.objects.annotate()
+    filterset = filtersets.EvpnVCVlanFilterSet
+    table = tables.EvpnVCVlanListTable
