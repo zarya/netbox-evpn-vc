@@ -16,7 +16,7 @@ urlpatterns = (
     # VLAN rules
     path('evpn-vc-vlan/', views.EvpnVCVlanListView.as_view(), name='evpnvcvlan_list'),
     path('evpn-vc-vlan/add/', views.EvpnVCVlanEditView.as_view(), name='evpnvcvlan_add'),
-    path('evpn-vc-vlan/delete/', views.EvpnVCVlanBulkDeleteView.as_view(), name='evpnvc_vlan_bulk_delete'),
+    path('evpn-vc-vlan/delete/', views.EvpnVCVlanBulkDeleteView.as_view(), name='evpnvcvlan_bulk_delete'),
     path('evpn-vc-vlan/<int:pk>/', views.EvpnVCVlanView.as_view(), name='evpnvcvlan'),
     path('evpn-vc-vlan/<int:pk>/edit/', views.EvpnVCVlanEditView.as_view(), name='evpnvcvlan_edit'),
     path('evpn-vc-vlan/<int:pk>/delete/', views.EvpnVCVlanDeleteView.as_view(), name='evpnvcvlan_delete'),

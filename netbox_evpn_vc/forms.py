@@ -42,7 +42,7 @@ class EvpnVCVlanForm(NetBoxModelForm):
     )
     vlan = DynamicModelChoiceField(
         queryset=VLAN.objects.all(),
-        required=False
+        required=True
     )
 
     class Meta:
