@@ -23,5 +23,15 @@ urlpatterns = (
     path('evpn-vc-vlan/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='evpnvcvlan_changelog', kwargs={
         'model': models.EvpnVCVlan
     }),
+    # VC Type rules
+    path('evpn-vc-type/', views.EvpnVCTypeListView.as_view(), name='evpnvctype_list'),
+    path('evpn-vc-type/add/', views.EvpnVCTypeEditView.as_view(), name='evpnvctype_add'),
+    path('evpn-vc-type/delete/', views.EvpnVCTypeBulkDeleteView.as_view(), name='evpnvctype_bulk_delete'),
+    path('evpn-vc-type/<int:pk>/', views.EvpnVCTypeView.as_view(), name='evpnvctype'),
+    path('evpn-vc-type/<int:pk>/edit/', views.EvpnVCTypeEditView.as_view(), name='evpnvctype_edit'),
+    path('evpn-vc-type/<int:pk>/delete/', views.EvpnVCTypeDeleteView.as_view(), name='evpnvctype_delete'),
+    path('evpn-vc-type/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='evpnvctype_changelog', kwargs={
+        'model': models.EvpnVCType
+    }),
 
     )

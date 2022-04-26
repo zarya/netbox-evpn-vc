@@ -1,8 +1,22 @@
 import django_filters
 from netbox.filtersets import NetBoxModelFilterSet
-from .models import EvpnVC, EvpnVCVlan 
+from .models import EvpnVC, EvpnVCVlan, EvpnVCType 
 from django.db.models import Q
 
+
+class EvpnVCTypeFilterSet(NetBoxModelFilterSet):
+    q = django_filters.CharFilter(
+        method='search',
+        label='Search',
+    )
+
+    class Meta:
+        model = EvpnVCType
+        fields = ('id', 'name', 'description',)
+
+    def search(self, queryset, name, value):
+        qs_filter = (Q(name__icontains=value))
+        return queryset.filter(qs_filter)
 
 class EvpnVCFilterSet(NetBoxModelFilterSet):
     q = django_filters.CharFilter(

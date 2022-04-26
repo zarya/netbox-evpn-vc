@@ -2,6 +2,27 @@ from netbox.views import generic
 from django.db.models import Count
 from . import forms, models, tables, filtersets
 
+class EvpnVCTypeView(generic.ObjectView):
+    queryset = models.EvpnVCType.objects.all()
+
+class EvpnVCTypeListView(generic.ObjectListView):
+    table = tables.EvpnVCTypeListTable
+    filterset = filtersets.EvpnVCTypeFilterSet
+    filterset_form = forms.EvpnVCTypeFilterSetForm
+    queryset = models.EvpnVCType.objects.all()
+
+class EvpnVCTypeEditView(generic.ObjectEditView):
+    queryset = models.EvpnVCType.objects.all()
+    form = forms.EvpnVCTypeForm
+
+class EvpnVCTypeDeleteView(generic.ObjectDeleteView):
+    queryset = models.EvpnVCType.objects.all()
+
+class EvpnVCTypeBulkDeleteView(generic.BulkDeleteView):
+    queryset = models.EvpnVCType.objects.annotate()
+    filterset = filtersets.EvpnVCTypeFilterSet
+    table = tables.EvpnVCTypeListTable
+
 class EvpnVCView(generic.ObjectView):
     queryset = models.EvpnVC.objects.all()
 
@@ -38,6 +59,9 @@ class EvpnVCBulkDeleteView(generic.BulkDeleteView):
     queryset = models.EvpnVC.objects.annotate()
     filterset = filtersets.EvpnVCFilterSet
     table = tables.EvpnVCTable
+
+
+
 
 class EvpnVCVlanView(generic.ObjectView):
     queryset = models.EvpnVCVlan.objects.all()

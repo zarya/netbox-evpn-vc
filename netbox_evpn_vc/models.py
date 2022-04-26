@@ -4,6 +4,26 @@ from django.db import models
 from django.urls import reverse
 from netbox.models import NetBoxModel
 
+class EvpnVCType(NetBoxModel):
+    name = models.CharField(
+        max_length=100
+    )
+    description = models.CharField(
+        max_length=200,
+        blank=True
+    )
+
+    class Meta:
+        ordering = ['name',]
+        verbose_name = "VC type"
+        verbose_name_plural = "VC types"
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('plugins:netbox_evpn_vc:evpnvctype', args=[self.pk])
+
 class EvpnVC(NetBoxModel):
     vni = models.BigIntegerField(
         verbose_name='VNI',
@@ -14,6 +34,11 @@ class EvpnVC(NetBoxModel):
     )
     name = models.CharField(
         max_length=100
+    )
+    vc_type = models.ForeignKey(
+        to='EvpnVCType',
+        related_name='evpns',
+        on_delete=models.PROTECT,
     )
     comments = models.TextField(
         blank=True
@@ -64,5 +89,4 @@ class EvpnVCVlan(NetBoxModel):
 
     def get_absolute_url(self):
         return reverse('plugins:netbox_evpn_vc:evpnvcvlan', args=[self.pk])
-
 

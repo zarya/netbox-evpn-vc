@@ -17,6 +17,12 @@ class EvpnVCVlanType(NetBoxObjectType):
         fields = '__all__'
         filterset_class = filtersets.EvpnVCVlanFilterSet
 
+class EvpnVCTypeType(NetBoxObjectType):
+
+    class Meta:
+        model = models.EvpnVCType
+        fields = '__all__'
+
 
 class Query(ObjectType):
     evpn_vc = ObjectField(EvpnVCType)
@@ -24,3 +30,6 @@ class Query(ObjectType):
 
     evpn_vc_vlan = ObjectField(EvpnVCVlanType)
     evpn_vc_vlan_list = ObjectListField(EvpnVCVlanType)
+
+    evpn_vc_type = ObjectField(EvpnVCTypeType)
+    evpn_vc_type_list = ObjectListField(EvpnVCTypeType)

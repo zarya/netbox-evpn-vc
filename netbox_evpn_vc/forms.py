@@ -3,7 +3,15 @@ from netbox.forms import NetBoxModelForm, NetBoxModelFilterSetForm, NetBoxModelB
 from utilities.forms.fields import CommentField, DynamicModelChoiceField
 from ipam.models import VLAN
 from tenancy.models import Tenant
-from .models import EvpnVC, EvpnVCVlan
+from .models import EvpnVC, EvpnVCVlan, EvpnVCType
+
+class EvpnVCTypeForm(NetBoxModelForm):
+    class Meta:
+        model = EvpnVCType
+        fields = ('name', 'description')
+
+class EvpnVCTypeFilterSetForm(NetBoxModelFilterSetForm):
+    model = EvpnVCType
 
 class EvpnVCForm(NetBoxModelForm):
     comments = CommentField()
@@ -11,10 +19,14 @@ class EvpnVCForm(NetBoxModelForm):
         queryset=Tenant.objects.all(),
         required=False
     )
+    vc_type = DynamicModelChoiceField(
+        queryset=EvpnVCType.objects.all(),
+        required=True
+    )
 
     class Meta:
         model = EvpnVC 
-        fields = ('vni', 'name', 'comments', 'tenant')
+        fields = ('vni', 'name', 'vc_type', 'tenant', 'comments')
 
 class EvpnVCBulkEditForm(NetBoxModelBulkEditForm):
     pk = forms.ModelMultipleChoiceField(
@@ -25,10 +37,14 @@ class EvpnVCBulkEditForm(NetBoxModelBulkEditForm):
         queryset=Tenant.objects.all(),
         required=False
     )
+    vc_type = DynamicModelChoiceField(
+        queryset=EvpnVCType.objects.all(),
+        required=True
+    )
 
     model = EvpnVC
     fieldsets = (
-        (None, ('tenant',)),
+        (None, ('tenant','vc_type')),
     )
 
     class Meta:
@@ -58,6 +74,10 @@ class EvpnVCFilterSetForm(NetBoxModelFilterSetForm):
     )
     tenant = DynamicModelChoiceField(
         queryset=Tenant.objects.all(),
+        required=False
+    )
+    vc_type = DynamicModelChoiceField(
+        queryset=EvpnVCType.objects.all(),
         required=False
     )
 
