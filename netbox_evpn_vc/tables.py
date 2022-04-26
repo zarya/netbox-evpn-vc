@@ -15,7 +15,7 @@ class EvpnVCTypeTable(NetBoxTable):
 
 class EvpnVCTypeListTable(NetBoxTable):
     class Meta(NetBoxTable.Meta):
-        model = EvpnVCVlan
+        model = EvpnVCType
         fields = (
             'pk', 'name', 'description',
         )
