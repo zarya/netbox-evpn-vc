@@ -12,7 +12,7 @@ class NestedEvpnVCSerializer(WritableNestedSerializer):
 
     class Meta:
         model = EvpnVC 
-        fields = ('id', 'url', 'display', 'name', 'tenant', 'vni')
+        fields = ('id', 'url', 'display', 'name', 'tenant', 'vni', 'vc_type')
 
 
 class NestedEvpnVCVlanSerializer(WritableNestedSerializer):
@@ -42,7 +42,7 @@ class EvpnVCSerializer(NetBoxModelSerializer):
     vlan_count = serializers.IntegerField(read_only=True)
     vlans = NestedEvpnVCVlanSerializer(many=True, read_only=True) 
     tenant = NestedTenantSerializer(read_only=True)
-    vc_type = NestedEvpnVCTypeSerializer(read_only=True)
+    vc_type = NestedEvpnVCTypeSerializer()
 
     class Meta:
         model = EvpnVC
