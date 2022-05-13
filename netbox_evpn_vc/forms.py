@@ -44,7 +44,7 @@ class EvpnVCBulkEditForm(NetBoxModelBulkEditForm):
 
     model = EvpnVC
     fieldsets = (
-        (None, ('tenant','vc_type')),
+        ('name', 'vni', ('tenant','vc_type')),
     )
 
     class Meta:
