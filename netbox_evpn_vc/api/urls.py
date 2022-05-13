@@ -2,7 +2,7 @@ from netbox.api.routers import NetBoxRouter
 from . import views
 
 
-app_name = 'netbox-evpn-vc'
+app_name = 'netbox_evpn_vc'
 
 router = NetBoxRouter()
 router.register('evpn-vcs', views.EvpnVCViewSet)

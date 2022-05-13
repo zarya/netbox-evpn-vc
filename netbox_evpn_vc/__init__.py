@@ -5,7 +5,7 @@ class NetBoxEvpnVCConfig(PluginConfig):
     verbose_name = 'EVPN Virtual Circuit'
     description = 'Manage EVPN Virtual Circuit'
     version = '0.1'
-    base_url = 'evpn_vc'
+    base_url = 'evpn-vc'
     min_version = '3.2.0'
 
 config = NetBoxEvpnVCConfig
