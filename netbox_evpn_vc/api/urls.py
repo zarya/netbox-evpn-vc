@@ -2,14 +2,11 @@ from netbox.api.routers import NetBoxRouter
 from . import views
 
 
-app_name = 'netbox_evpn_vc'
+app_name = 'netbox-evpn-vc'
 
 router = NetBoxRouter()
 router.register('evpn-vcs', views.EvpnVCViewSet)
-router.register('evpn_vcs', views.EvpnVCViewSet)
 router.register('evpn-vc-vlans', views.EvpnVCVlanViewSet)
-router.register('evpn_vc_vlans', views.EvpnVCVlanViewSet)
 router.register('evpn-vc-types', views.EvpnVCTypeViewSet)
-router.register('evpn_vc_types', views.EvpnVCTypeViewSet)
 
 urlpatterns = router.urls
