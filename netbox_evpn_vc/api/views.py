@@ -11,6 +11,7 @@ class EvpnVCViewSet(NetBoxModelViewSet):
         vlan_count=Count('vlans')
     )
     serializer_class = EvpnVCSerializer
+    filterset_class = filtersets.EvpnVCFilterSet
 
 
 class EvpnVCVlanViewSet(NetBoxModelViewSet):
