@@ -44,7 +44,7 @@ class EvpnVCBulkEditForm(NetBoxModelBulkEditForm):
 
     model = EvpnVC
     fieldsets = (
-        ('name', 'vni', ('tenant','vc_type')),
+        (None, ('tenant','vc_type')),
     )
 
     class Meta:
@@ -71,6 +71,14 @@ class EvpnVCFilterSetForm(NetBoxModelFilterSetForm):
     q = forms.CharField(
         required=False,
         label='Search'
+    )
+    vni = forms.CharField(
+        required=False,
+        label='VNI'
+    )
+    name = forms.CharField(
+        required=False,
+        label='Name'
     )
     tenant = DynamicModelChoiceField(
         queryset=Tenant.objects.all(),
