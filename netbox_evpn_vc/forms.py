@@ -72,6 +72,14 @@ class EvpnVCFilterSetForm(NetBoxModelFilterSetForm):
         required=False,
         label='Search'
     )
+    vni = forms.CharField(
+        required=False,
+        label='VNI'
+    )
+    name = forms.CharField(
+        required=False,
+        label='Name'
+    )
     tenant = DynamicModelChoiceField(
         queryset=Tenant.objects.all(),
         required=False
