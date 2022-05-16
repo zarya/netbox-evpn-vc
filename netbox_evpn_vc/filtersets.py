@@ -2,7 +2,7 @@ import django_filters
 from netbox.filtersets import NetBoxModelFilterSet
 from .models import EvpnVC, EvpnVCVlan, EvpnVCType 
 from django.db.models import Q
-
+from ipam.models import VLAN
 
 class EvpnVCTypeFilterSet(NetBoxModelFilterSet):
     q = django_filters.CharFilter(
@@ -41,6 +41,20 @@ class EvpnVCVlanFilterSet(NetBoxModelFilterSet):
     class Meta:
         model = EvpnVCVlan 
         fields = ('id', 'evpn_vc', 'vlan')
+
+    evpn_vc_id = django_filters.ModelMultipleChoiceFilter(
+        field_name='evpn_vc__id',
+        queryset=EvpnVC.objects.all(),
+        to_field_name='id',
+        label='EVPN VC (ID)',
+    )
+
+    vlan_id = django_filters.ModelMultipleChoiceFilter(
+        field_name='vlan__id',
+        queryset=VLAN.objects.all(),
+        to_field_name='id',
+        label=' (ID)',
+    )
 
     def search(self, queryset, name, value):
         qs_filter = (
