@@ -41,7 +41,7 @@ class EvpnVCSerializer(NetBoxModelSerializer):
 
     vlan_count = serializers.IntegerField(read_only=True)
     vlans = NestedEvpnVCVlanSerializer(many=True, read_only=True) 
-    tenant = NestedTenantSerializer(read_only=True)
+    tenant = NestedTenantSerializer()
     vc_type = NestedEvpnVCTypeSerializer()
 
     class Meta:
