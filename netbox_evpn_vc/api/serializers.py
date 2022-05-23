@@ -47,7 +47,7 @@ class EvpnVCSerializer(NetBoxModelSerializer):
     class Meta:
         model = EvpnVC
         fields = (
-            'id', 'url', 'display', 'name', 'vc_type', 'tenant', 'comments', 'vni', 'vlan_count', 'vlans', 'tags', 'custom_fields', 'created',
+            'id', 'display', 'name', 'vc_type', 'tenant', 'comments', 'vni', 'vlan_count', 'vlans', 'tags', 'custom_fields', 'created',
             'last_updated',
         )
 
@@ -61,7 +61,7 @@ class EvpnVCVlanSerializer(NetBoxModelSerializer):
     class Meta:
         model = EvpnVCVlan
         fields = (
-            'id', 'url', 'display', 'evpn_vc', 'vlan', 
+            'id', 'display', 'evpn_vc', 'vlan', 
             'tags', 'custom_fields', 'created',
             'last_updated',
         )
@@ -74,7 +74,7 @@ class EvpnVCTypeSerializer(NetBoxModelSerializer):
     class Meta:
         model = EvpnVCType
         fields = (
-            'id', 'url', 'display', 'name', 'description',
+            'id', 'display', 'name', 'description',
             'tags', 'created',
             'last_updated',
         )
