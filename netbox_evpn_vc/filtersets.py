@@ -3,6 +3,7 @@ from netbox.filtersets import NetBoxModelFilterSet
 from .models import EvpnVC, EvpnVCVlan, EvpnVCType 
 from django.db.models import Q
 from ipam.models import VLAN
+from tenancy.models import Tenant
 
 class EvpnVCTypeFilterSet(NetBoxModelFilterSet):
     q = django_filters.CharFilter(
@@ -24,6 +25,12 @@ class EvpnVCFilterSet(NetBoxModelFilterSet):
         label='Search',
     )
 
+    tenant_id = django_filters.ModelMultipleChoiceFilter(
+        field_name='tenant__id',
+        queryset=Tenant.objects.all(),
+        to_field_name='id',
+        label='Tenant (ID)',
+    )
     class Meta:
         model = EvpnVC
         fields = ('id', 'name', 'vni', 'tenant')
