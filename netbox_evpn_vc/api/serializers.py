@@ -35,9 +35,9 @@ class NestedEvpnVCTypeSerializer(WritableNestedSerializer):
         fields = ('id', 'url', 'display', 'name', 'description', 'created', 'last_updated')
 
 class EvpnVCSerializer(NetBoxModelSerializer):
-    url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:netbox_evpn_vc-api:evpnvc-detail'
-    )
+    # url = serializers.HyperlinkedIdentityField(
+    #     view_name='plugins-api:netbox_evpn_vc-api:evpnvc-detail'
+    # )
 
     vlan_count = serializers.IntegerField(read_only=True)
     vlans = NestedEvpnVCVlanSerializer(many=True, read_only=True) 
@@ -47,34 +47,34 @@ class EvpnVCSerializer(NetBoxModelSerializer):
     class Meta:
         model = EvpnVC
         fields = (
-            'id', 'url', 'display', 'name', 'vc_type', 'tenant', 'comments', 'vni', 'vlan_count', 'vlans', 'tags', 'custom_fields', 'created',
+            'id', 'display', 'name', 'vc_type', 'tenant', 'comments', 'vni', 'vlan_count', 'vlans', 'tags', 'custom_fields', 'created',
             'last_updated',
         )
 
 class EvpnVCVlanSerializer(NetBoxModelSerializer):
-    url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:netbox_evpn_vc-api:evpnvcvlan-detail'
-    )
+    # url = serializers.HyperlinkedIdentityField(
+    #     view_name='plugins-api:netbox_evpn_vc-api:evpnvcvlan-detail'
+    # )
     vlan = NestedVLANSerializer()
     evpn_vc = NestedEvpnVCSerializer()
 
     class Meta:
         model = EvpnVCVlan
         fields = (
-            'id', 'url', 'display', 'evpn_vc', 'vlan', 
+            'id', 'display', 'evpn_vc', 'vlan', 
             'tags', 'custom_fields', 'created',
             'last_updated',
         )
 
 class EvpnVCTypeSerializer(NetBoxModelSerializer):
-    url = serializers.HyperlinkedIdentityField(
-        view_name='plugins-api:netbox_evpn_vc-api:evpnvctype-detail'
-    )
+    # url = serializers.HyperlinkedIdentityField(
+    #     view_name='plugins-api:netbox_evpn_vc-api:evpnvctype-detail'
+    # )
 
     class Meta:
         model = EvpnVCType
         fields = (
-            'id', 'url', 'display', 'name', 'description',
+            'id', 'display', 'name', 'description',
             'tags', 'created',
             'last_updated',
         )
