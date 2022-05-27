@@ -8,7 +8,7 @@ class NestedEvpnVCSerializer(WritableNestedSerializer):
     url = serializers.HyperlinkedIdentityField(
         view_name='plugins-api:netbox_evpn_vc-api:evpnvc-detail'
     )
-    tenant = NestedTenantSerializer(read_only=True)
+    tenant = NestedTenantSerializer(read_only=True, required=False)
 
     class Meta:
         model = EvpnVC 
@@ -41,7 +41,7 @@ class EvpnVCSerializer(NetBoxModelSerializer):
 
     vlan_count = serializers.IntegerField(read_only=True)
     vlans = NestedEvpnVCVlanSerializer(many=True, read_only=True) 
-    tenant = NestedTenantSerializer()
+    tenant = NestedTenantSerializer(required=False)
     vc_type = NestedEvpnVCTypeSerializer()
 
     class Meta:
