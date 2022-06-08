@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='netbox-evpn-vc',
-    version='0.1',
+    version='0.2',
     description='Netbox EVPN Virtual Circuit',
     install_requires=[],
     packages=find_packages(),
