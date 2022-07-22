@@ -26,7 +26,7 @@ class EvpnVCForm(NetBoxModelForm):
 
     class Meta:
         model = EvpnVC 
-        fields = ('vni', 'name', 'vc_type', 'tenant', 'comments')
+        fields = ('vni', 'name', 'vc_type', 'tenant', 'comments', 'tags')
 
 class EvpnVCBulkEditForm(NetBoxModelBulkEditForm):
     pk = forms.ModelMultipleChoiceField(
